@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="threshold:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/threshold_jar</output-path>
+    <root id="archive" name="threshold.jar">
+      <element id="module-output" name="threshold" />
+    </root>
+  </artifact>
+</component>

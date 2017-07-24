@@ -1,0 +1,41 @@
+spark-submit --class com.spark.fjuted.threshold --master local \
+--jars \
+/home/rong/Desktop/System/Libs/spark-streaming_2.11-2.1.0.jar \
+/home/rong/Desktop/System/Threshold/out/artifacts/threshold_jar/threshold.jar \
+tedroung@gmail.com sensorid 1 134.208.3.201 134.208.3.201 facebooktoken devicetoken none 10 20
+
+--jars \
+--driver-class-path \
+/home/rong/Desktop/System/Libs/casbah-core_2.11-3.1.1.jar \
+/home/rong/Desktop/System/Libs/facebook4j-core-2.4.9.jar \
+/home/rong/Desktop/System/Libs/javaee-api-7.0.jar \
+/home/rong/Desktop/System/Libs/javax.mail-api-1.5.6.jar \
+/home/rong/Desktop/System/Libs/json-simple-1.1.1.jar \
+/home/rong/Desktop/System/Libs/org.eclipse.paho.client.mqttv3-1.1.1.jar \
+/home/rong/Desktop/System/Libs/spark-core_2.11-2.1.0.jar \
+/home/rong/Desktop/System/Libs/spark-streaming_2.11-2.1.0.jar \
+/home/rong/Desktop/System/Libs/spark-streaming-mqtt_2.11-2.1.0.jar \
+
+
+spark-submit --class com.spark.fjuted.threshold --master local \
+/home/rong/Desktop/spark-scala-template-master/target/scala-2.11/spark-scala-assembly-1.0.jar \
+tedroung@gmail.com sensorid 1 134.208.3.201 134.208.3.201 facebooktoken devicetoken none 10 20
+
+curl -X POST http://134.208.3.201:6066/v1/submissions/create --header "Content-Type:application/json;charset=UTF-8" --data '{
+  "action" : "CreateSubmissionRequest",
+  "appArgs" : [ "ruleid", "sensorname", "610421213@gms.ndhu.edu.tw", "sensorid/123", "1", "134.208.3.206", "134.208.3.201", "facebooktoken", "devicetoken", "none", "message", "actuator", "20", "10" ],
+  "appResource" : "file:/home/rong/Desktop/spark-scala-template-master/target/scala-2.11/spark-scala-assembly-1.0.jar",
+  "clientSparkVersion" : "2.1.0",
+  "environmentVariables" : {
+    "SPARK_ENV_LOADED" : "1"
+  },
+  "mainClass" : "com.spark.fjuted.threshold",
+  "sparkProperties" : {
+    "spark.jars" : "file:/home/rong/Desktop/spark-scala-template-master/target/scala-2.11/spark-scala-assembly-1.0.jar",
+    "spark.driver.supervise" : "false",
+    "spark.app.name" : "Threshold",
+    "spark.eventLog.enabled": "true",
+    "spark.submit.deployMode" : "cluster",
+    "spark.master" : "spark://134.208.3.201:6066"
+  }
+}'

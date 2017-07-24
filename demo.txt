@@ -1,0 +1,25 @@
+// Configure the request
+		var options = {
+			url: "http://" + "134.208.3.201" + ":6066" + "/v1/submissions/create",
+			method: 'POST',
+			headers: "Content-Type:application/json;charset=UTF-8",
+			json: {
+				  "action" : "CreateSubmissionRequest",
+				  "appArgs" : [ "ruleid", "sensorname", "tedroung@gmail.com", "sensorid", "1", "134.208.3.201", "134.208.3.201", "facebooktoken", "devicetoken", "none", "message", "actuator", "20", "10"
+ ],
+				  "appResource" : "file:/home/rong/Desktop/spark-scala-template-master/target/scala-2.11/spark-scala-assembly-1.0.jar",
+				  "clientSparkVersion" : "2.1.0",
+				  "environmentVariables" : {
+					"SPARK_ENV_LOADED" : "1"
+				  },
+				  "mainClass" : "com.spark.fjuted.demo",
+				  "sparkProperties" : {
+					"spark.jars" : "file:/home/rong/Desktop/System/demo.jar",
+					"spark.driver.supervise" : "false",
+					"spark.app.name" : "Demo",
+					"spark.eventLog.enabled": "true",
+					"spark.submit.deployMode" : "client",
+					"spark.master" : "spark://134.208.3.201:6066"
+				  }
+			}
+		}
